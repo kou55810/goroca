@@ -20,17 +20,17 @@ public class MemberEntity : CardEntity
     /// <summary>
     /// 攻撃1
     /// </summary>
-    public string attack1;
+    public AttackEntity attack1;
 
     /// <summary>
     /// 攻撃2
     /// </summary>
-    public string attack2;
+    public AttackEntity attack2;
 
     /// <summary>
     /// 特性
     /// </summary>
-    public string ability;
+    public AbilityEntity ability;
 
     /// <summary>
     /// 状態異常
@@ -50,10 +50,35 @@ public class MemberEntity : CardEntity
     /// <summary>
     /// 道具
     /// </summary>
-    public CardEntity belongings;
+    public int belongings;
 
     /// <summary>
     /// メンバーの種類
     /// </summary>
     public MemberType memberType;
+
+    /// <summary>
+    /// メンバーの進化順番
+    /// </summary>
+    public EvolutionaryOrderEntity evolutionaryOrder;
+
+    /// <summary>
+    /// 落ちエネ
+    /// </summary>
+    public Sprite dropEnergyImage;
+
+    /// <summary>
+    /// 道具
+    /// </summary>
+    public Sprite belongingsImage;
+
+    /// <summary>
+    /// 状態異常イメージ
+    /// </summary>
+    public Sprite specialConditionsImage;
+
+    /// <summary>
+    /// EXフラグ
+    /// </summary>
+    public bool isEX = false;
 }

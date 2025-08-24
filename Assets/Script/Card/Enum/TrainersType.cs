@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 /// <summary>
@@ -8,20 +9,18 @@ public enum TrainersType
     /// <summary>
     /// 道具
     /// </summary>
+    [Description("どうぐ")]
     TOOL,
 
     /// <summary>
     /// 持ち物
     /// </summary>
+    [Description("もちもの")]
     BELONGINGS,
 
     /// <summary>
-    /// サポート
+    /// イベント
     /// </summary>
-    SUPPORT,
-
-    /// <summary>
-    /// 場所
-    /// </summary>
-    PLACE
+    [Description("イベント")]
+    EVENT,
 }

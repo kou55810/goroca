@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// トレーナーズEntity
 /// </summary>
+[CreateAssetMenu(fileName = "TrainersEntity", menuName = "Create TrainersEntity")]
 public class TrainersEntity: CardEntity
 {
     /// <summary>

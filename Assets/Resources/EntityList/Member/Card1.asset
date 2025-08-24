@@ -21,11 +21,14 @@ MonoBehaviour:
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
   hp: 200
   clubType: 0
-  attack1: test1
-  attack2: test2
-  ability: test0
+  attack1: {fileID: 11400000, guid: acfaba03ff367e344ac0c30fe349c770, type: 2}
+  attack2: {fileID: 11400000, guid: f22d3ddf5ecb76b4d81e7ef3368eb259, type: 2}
+  ability: {fileID: 11400000, guid: 97edd231c3cea874fb0d78c6c9a4156e, type: 2}
   specialConditions: 
   dropEnergy: 0
   weakness: 0
   belongings: {fileID: 0}
   memberType: 0
+  dropEnergyImage: {fileID: 8351799477281951970, guid: 5bf35aff862bd6f418da3b4d8ea33be6, type: 3}
+  belongingsImage: {fileID: 0}
+  specialConditionsImage: {fileID: 0}

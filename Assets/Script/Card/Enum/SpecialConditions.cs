@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 /// <summary>
@@ -8,25 +9,23 @@ public enum SpecialConditions
     /// <summary>
     /// 毒
     /// </summary>
+    [Description("poision")]
     POISION,
-
-    /// <summary>
-    /// やけど
-    /// </summary>
-    BURN,
-
-    /// <summary>
-    /// こんらん
-    /// </summary>
-    CONFUSE,
 
     /// <summary>
     /// ねむり
     /// </summary>
-    ASLEEP,
+    [Description("sleep")]
+    SLEEP,
 
     /// <summary>
-    /// まひ
+    /// 毒眠り
     /// </summary>
-    PARALYZED
+    [Description("sleep_poision")]
+    POISION_AND_SLEEP,
+
+    /// <summary>
+    /// なし
+    /// </summary>
+    NONE
 }
