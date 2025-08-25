@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      goroca_title_0: 4409963888542919857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
