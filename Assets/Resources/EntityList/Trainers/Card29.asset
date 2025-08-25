@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439d2be10a98bb7418f29c1b6c70912a, type: 3}
+  m_Name: Card29
+  m_EditorClassIdentifier: 
+  id: 33
+  name: "\u7D39\u4ECB"
+  cardType: 1
+  cardImage: {fileID: -7984929902847940331, guid: 3796e01bd4af0fc46a4b4e7ab0af0d02, type: 3}
+  typeFrame: {fileID: -8192616353408732021, guid: 534d8a42d90d91042995b51502e3de8e, type: 3}
+  background: {fileID: 3150285057107050492, guid: ebd183bd7fcb5b2468c0de79091f9419, type: 3}
+  backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
+  effect: "\u3053\u306E\u3082\u3061\u3082\u306E\u3092\u6301\u3063\u3066\u3044\u308B\u30E1\u30F3\u30D0\u30FC\u306E\u6700\u5927\uFF2D\uFF30\u3092\u30D7\u30E9\u30B9\uFF12\uFF10\u3059\u308B"
+  trainersType: 1

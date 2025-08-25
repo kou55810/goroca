@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68bf59479578ca0489877a0c2bbda90b, type: 3}
-  m_Name: ability12
+  m_Name: ability3
   m_EditorClassIdentifier: 
   isUsed: 0
   abilityName: "\u30A8\u30EC\u30AD\u30B3\u30D6\u30E9"
