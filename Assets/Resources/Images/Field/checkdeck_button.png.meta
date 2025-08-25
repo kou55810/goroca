@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      checkdeck_button_0: -9154632431027321895
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

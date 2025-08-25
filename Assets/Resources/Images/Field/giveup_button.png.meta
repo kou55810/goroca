@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      giveup_button_0: 7105301983048155236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

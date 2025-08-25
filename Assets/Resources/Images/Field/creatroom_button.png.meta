@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      creatroom_button_0: -3327517817920118237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
