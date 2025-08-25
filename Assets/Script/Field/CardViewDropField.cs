@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// カードビュー表示領域
 /// </summary>
-public class CardViewDropField : MonoBehaviour, IDropHandler
+public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
 {
     /// <summary>
     /// カードのサイズ
@@ -28,7 +29,7 @@ public class CardViewDropField : MonoBehaviour, IDropHandler
 
     public bool isAction = false;
 
-    public void OnDrop(PointerEventData eventData)
+    public async void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag.GetComponent<AbstractCardController>() is null)
         {
@@ -38,7 +39,8 @@ public class CardViewDropField : MonoBehaviour, IDropHandler
                 BelongingsView belonging = eventData.pointerDrag.GetComponent<BelongingsView>();
                 GameObject playerOffline = GameObject.Find("PlayerOffline");
                 CardViewDropField playerOfflineField = playerOffline.GetComponent<CardViewDropField>();
-                CardCreator.instance.CreateCard(belonging.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification);
+                AbstractCardController dropCard = await CardCreator.instance.CreateCard(belonging.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification);
+                GameManager.instance.CreateEnemyCard(belonging.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification, dropCard.guid);
                 belonging.DisableBelongings();
                 // Destroy(belonging.gameObject);
             }
@@ -69,12 +71,15 @@ public class CardViewDropField : MonoBehaviour, IDropHandler
                         return;
                     }
                     // カードを生成
-                    CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                    bool frontCheck = GameManager.instance.IsStunby() ? false : isFront;
+                    AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, frontCheck, isNormalPosition, isMovement, isAction, cardMagnification);
+                    GameManager.instance.CreateEnemyCard(card.model.id, this.transform, frontCheck, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
                 }
                 // オフラインから出る場合も新規
                 else if (card.IsParentTrans("PlayerOffline"))
                 {
-                    CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                    AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                    GameManager.instance.CreateEnemyCard(card.model.id, this.transform, isFront, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
                 }
                 // それ以外はHPや道具を引き継ぐ
                 else
@@ -82,11 +87,17 @@ public class CardViewDropField : MonoBehaviour, IDropHandler
                     // 手札、オフラインの場合は状態を引き継がない
                     if (this.name.Equals("PlayerOffline") || this.name.Equals("PlayerHand"))
                     {
-                        CardCreator.instance.CreateCard(member.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                        card.DestroyCard();
+                        AbstractCardController dropCard = await CardCreator.instance.CreateCard(member.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                        GameManager.instance.CreateEnemyCard(member.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification, dropCard.guid);
+                        return;
                     }
                     else
                     {
-                        CardCreator.instance.CreateMemberCard(member, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                        card.DestroyCard();
+                        MemberController memCard = await CardCreator.instance.CreateMemberCard(member.model as MemberModel, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                        GameManager.instance.CreateEnemyMemberCard(member.model as MemberModel, this.transform, isFront, isNormalPosition, !isMovement, isAction, cardMagnification, memCard.guid);
+                        return;
                     }
                 }
             }
@@ -102,16 +113,18 @@ public class CardViewDropField : MonoBehaviour, IDropHandler
                     ShowTrainers(card);
                     GameObject playerOffline = GameObject.Find("PlayerOffline");
                     CardViewDropField playerOfflineField = playerOffline.GetComponent<CardViewDropField>();
-                    CardCreator.instance.CreateCard(card.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification);
+                    AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification);
+                    GameManager.instance.CreateEnemyCard(card.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification, dropCard.guid);
                 }
                 else
                 {
-                    CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                    AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
+                    GameManager.instance.CreateEnemyCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification, dropCard.guid);
                 }
             }
 
             // カードオブジェクトを破壊する
-            Destroy(card.gameObject);
+            card.DestroyCard();
         }
     }
 

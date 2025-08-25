@@ -229,6 +229,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 224693751}
+        m_TargetAssemblyTypeName: SettingsRoom, Assembly-CSharp
+        m_MethodName: OnClick_OKButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &57902395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u623B\u308B"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f32d3a365aff4274e9df6714fafd9f3d, type: 2}
   m_sharedMaterial: {fileID: -1791913289294554306, guid: f32d3a365aff4274e9df6714fafd9f3d, type: 2}
@@ -646,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 1119601833}
+  dropdown: {fileID: 339638881}
 --- !u!4 &224693752
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3867847457920641268}
   - component: {fileID: 5765675458578506751}
   - component: {fileID: -5985600438004501436}
+  - component: {fileID: 4785561649076067323}
   m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
@@ -176,3 +177,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4785561649076067323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120891862820057864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d1eed6fd2194d47a7c84a890886b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck: {fileID: -5992010572941148243}

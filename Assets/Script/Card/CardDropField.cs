@@ -14,6 +14,9 @@ public class CardDropField : MonoBehaviour, IDropHandler
     /// <param name="eventData"></param>
     public void OnDrop(PointerEventData eventData)
     {
+        if (this.transform.parent.name.Contains("Enemy")) {
+            return;       
+        }
         MemberController baseCard = this.GetComponent<MemberController>();
         if (baseCard is null)
         {
@@ -44,6 +47,7 @@ public class CardDropField : MonoBehaviour, IDropHandler
             if (card is MemberController)
             {
                 (card as MemberController).AddSpecialConditions(marker.specialConditions);
+                GameManager.instance.AddSpecialConditions(card.guid, marker.specialConditions);
             }
         }
         // エネルギーをドロップしたとき
@@ -101,7 +105,7 @@ public class CardDropField : MonoBehaviour, IDropHandler
                 if (((putCard as TrainersController).model as TrainersModel).trainersType.Equals(TrainersType.BELONGINGS))
                 {
                     (baseCard as MemberController).SetBelongings(putCard.model.id);
-                    Destroy(putCard.gameObject);
+                    putCard.DestroyCard();
                 }
             }
         }
@@ -123,14 +127,15 @@ public class CardDropField : MonoBehaviour, IDropHandler
         putMember.DamageCount((baseCard.model as MemberModel).hp - (baseCard.model as MemberModel).restHP);
         putMember.SetBelongings((baseCard.model as MemberModel).belongings);
         putMember.AddEnergy((baseCard.model as MemberModel).energyCount);
-        Destroy(putMember.gameObject);
-        await CardCreator.instance.CreateMemberCard(putMember, baseParent, baseDropField.isFront, baseDropField.isNormalPosition, baseDropField.isMovement, true, baseDropField.cardMagnification);
-
+        putMember.DestroyCard();
+        MemberController card = await CardCreator.instance.CreateMemberCard(putMember.model as MemberModel, baseParent, baseDropField.isFront, baseDropField.isNormalPosition, baseDropField.isMovement, true, baseDropField.cardMagnification);
+        GameManager.instance.CreateEnemyMemberCard(putMember.model as MemberModel, baseParent, baseDropField.isFront, baseDropField.isNormalPosition, !baseDropField.isMovement, true, baseDropField.cardMagnification, card.guid);
         // 進化前はトラッシュに送る
         GameObject playerOffline = GameObject.Find("PlayerOffline");
         CardViewDropField playerOfflineField = playerOffline.GetComponent<CardViewDropField>();
-        CardCreator.instance.CreateCard(baseCard.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, false, playerOfflineField.cardMagnification);
-        Destroy(baseCard.gameObject);
+        AbstractCardController trushCard = await CardCreator.instance.CreateCard(baseCard.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, false, playerOfflineField.cardMagnification);
+        GameManager.instance.CreateEnemyCard(baseCard.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, false, playerOfflineField.cardMagnification, trushCard.guid);
+        baseCard.DestroyCard();
     }
 
     /// <summary>
@@ -138,16 +143,18 @@ public class CardDropField : MonoBehaviour, IDropHandler
     /// </summary>
     /// <param name="baseCard"></param>
     /// <param name="putMember"></param>
-    private void BattleMember(MemberController baseCard, MemberController putMember)
+    private async void BattleMember(MemberController baseCard, MemberController putMember)
     {
         Transform baseParent = baseCard.transform.parent.transform;
         CardViewDropField baseDropField = baseParent.GetComponent<CardViewDropField>();
         Transform putParent = putMember.movement.cardParent.transform;
         CardViewDropField putDropField = putParent.GetComponent<CardViewDropField>();
-        CardCreator.instance.CreateMemberCard(putMember, baseParent, baseDropField.isFront, baseDropField.isNormalPosition, baseDropField.isMovement, false, baseDropField.cardMagnification);
-        CardCreator.instance.CreateMemberCard(baseCard, putParent, putDropField.isFront, putDropField.isNormalPosition, putDropField.isMovement, false, putDropField.cardMagnification);
-        Destroy(baseCard.gameObject);
-        Destroy(putMember.gameObject);
+        MemberController putMemCard = await CardCreator.instance.CreateMemberCard(putMember.model as MemberModel, baseParent, baseDropField.isFront, baseDropField.isNormalPosition, baseDropField.isMovement, false, baseDropField.cardMagnification);
+        GameManager.instance.CreateEnemyMemberCard(putMember.model as MemberModel, baseParent, baseDropField.isFront, baseDropField.isNormalPosition, baseDropField.isMovement, false, baseDropField.cardMagnification, putMemCard.guid);
+        MemberController baseMemCard = await CardCreator.instance.CreateMemberCard(baseCard.model as MemberModel, putParent, putDropField.isFront, putDropField.isNormalPosition, putDropField.isMovement, false, putDropField.cardMagnification);
+        GameManager.instance.CreateEnemyMemberCard(baseCard.model as MemberModel, putParent, putDropField.isFront, putDropField.isNormalPosition, putDropField.isMovement, false, putDropField.cardMagnification, baseMemCard.guid);
+        baseCard.DestroyCard();
+        putMember.DestroyCard();
     }
 
     /// <summary>
@@ -158,15 +165,18 @@ public class CardDropField : MonoBehaviour, IDropHandler
     private void DamageCount(MemberController member, int damage)
     {
         member.DamageCount(damage);
+        GameManager.instance.DamageCount(member.guid, damage);
     }
 
     private void AddEnergy(MemberController member)
     {
         member.AddEnergy(1);
+        GameManager.instance.AddEnergyCard(member.guid, 1);
     }
 
     private void MinusEnergy(MemberController member)
     {
         member.MinusEnergy(1);
+        GameManager.instance.RemoveEnergyCard(member.guid, 1);
     }
 }

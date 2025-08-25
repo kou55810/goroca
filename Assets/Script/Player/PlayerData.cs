@@ -1,12 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 /// <summary>
 /// プレイヤーデータ
 /// </summary>
-public class PlayerData : MonoBehaviour
+public class PlayerData : MonoBehaviourPun
 {
+    private readonly Color COLOR_RED = new Color(0.92549f, 0.31765f, 0.31765f, 1.0f);
+    private readonly Color COLOR_BLUE = new Color(0.31765f, 0.48235f, 0.92549f, 1.0f);
+    private readonly Color COLOR_GRAY = new Color(0.8f, 0.8f, 0.8f, 1.0f);
     /// <summary>
     /// プレイヤーのID
     /// </summary>
@@ -46,10 +50,28 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public void DeckShuffle()
+    {
+        deck.Shuffle();
+    }
+
     public void Init(PlayerEntity playerEntity)
     {
-        playerId = playerEntity.id;
+        this.playerId = playerEntity.id;
         deck = DeckCreator.instance.CreateDeck(playerEntity.deckId, playerDeckField, true);
+        deck.Shuffle();
+        playerInfo.SetName(playerEntity.name);
+        playerInfo.playerType = playerEntity.playerType;
+        playerInfo.SetPlayerIcon(playerEntity.playerType.GetDescription());
+        switch (playerEntity.playerType)
+        {
+            case PlayerType.RED:
+                ChangeBackgroundColor(COLOR_RED);
+                break;
+            case PlayerType.BLUE:
+                ChangeBackgroundColor(COLOR_BLUE);
+                break;
+        }
     }
 
     /// <summary>
@@ -64,11 +86,12 @@ public class PlayerData : MonoBehaviour
     /// 手札にカードを追加する
     /// </summary>
     /// <param name="id"></param>
-    public void AddHand(int id)
+    public async void AddHand(int id)
     {
         if (this.name.Equals("Player"))
         {
-            CardCreator.instance.CreateCard(id, playerHand, true, true, true, false, 0.25f);
+            AbstractCardController card = await CardCreator.instance.CreateCard(id, playerHand, true, true, true, false, 0.25f);
+            GameManager.instance.CreateEnemyCard(id, playerHand, false, true, false, false, 0.25f, card.guid);
         }
         else if (this.name.Equals("Enemy"))
         {
@@ -105,17 +128,19 @@ public class PlayerData : MonoBehaviour
     /// オフラインをリセットする
     /// </summary>
     /// <param name="cards"></param>
-    public void ResetOffline(List<int> cards)
+    public async void ResetOffline(List<int> cards)
     {
         // オフラインを初期化
         for (int i = 0; i < playerOffline.transform.childCount; i++)
         {
-            Destroy(playerOffline.transform.GetChild(i).gameObject);
+            AbstractCardController card = playerOffline.transform.GetChild(i).GetComponent<AbstractCardController>();
+            card.DestroyCard();
         }
         // カードを配置
         foreach (int id in cards)
         {
-            CardCreator.instance.CreateCard(id, playerOffline.transform, true, true, false, false, 0.25f);
+            AbstractCardController card = await CardCreator.instance.CreateCard(id, playerOffline.transform, true, true, false, false, 0.25f);
+            GameManager.instance.CreateEnemyCard(id, playerOffline.transform, true, true, false, false, 0.25f, card.guid);
         }
     }
 
@@ -126,6 +151,11 @@ public class PlayerData : MonoBehaviour
     public void SetDeckCards(List<int> cards)
     {
         deck.SetCardIds(cards);
+    }
+
+    public void PointChanged(int point)
+    {
+        playerInfo.PointChanged(point);
     }
 
     public void AddPoint()
@@ -141,5 +171,27 @@ public class PlayerData : MonoBehaviour
     public void ChangeBackgroundColor(Color color)
     {
         playerInfo.ChangeBackgroundColor(color);
+    }
+
+    public void TurnStart()
+    {
+        playerInfo.SetEnegry(false);
+        playerInfo.SetSupport(false);
+        switch (playerInfo.playerType)
+        {
+            case PlayerType.RED:
+                ChangeBackgroundColor(COLOR_RED);
+                break;
+            case PlayerType.BLUE:
+                ChangeBackgroundColor(COLOR_BLUE);
+                break;
+        }
+    }
+
+    public void TurnEnd()
+    {
+        playerInfo.SetEnegry(true);
+        playerInfo.SetSupport(true);
+        ChangeBackgroundColor(COLOR_GRAY);
     }
 }

@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class AbstractCardController : MonoBehaviour
 {
+    public Guid guid;
 
     /// <summary>
     /// カードビュー
@@ -65,5 +67,11 @@ public abstract class AbstractCardController : MonoBehaviour
     {
         Transform belongings = this.transform.Find("Backside");
         belongings.gameObject.SetActive(false);
+    }
+
+    public void DestroyCard()
+    {
+        GameManager.instance.DestroyCard(guid);
+        Destroy(this.gameObject);
     }
 }

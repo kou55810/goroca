@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,8 +35,16 @@ public class CardCreator : MonoBehaviour
         {
             instance = this;
         }
-        memberIds = new List<int> { 1, 11, 12, 13 };
-        trainersIds = new List<int> { 2, 34, 49 };
+        memberIds = new List<int>();
+        for (int i = 1; i <= 31; i++)
+        {
+            memberIds.Add(i);
+        }
+        trainersIds = new List<int>();
+        for (int i = 32; i <= 51; i++)
+        {
+            trainersIds.Add(i);
+        }
     }
 
     /// <summary>
@@ -46,15 +55,15 @@ public class CardCreator : MonoBehaviour
     /// <param name="isFront">表面か</param>
     /// <param name="scale">サイズ</param>
     /// <returns></returns>
-    public async Task<AbstractCardController> CreateCard(int number, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1)
+    public async Task<AbstractCardController> CreateCard(int number, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1, Guid guid = default(Guid))
     {
         if (memberIds.Contains(number))
         {
-            return await CreateMemberCard(number, trans, isFront, isNormalPosition, isMovement, isAction, scale);
+            return await CreateMemberCard(number, trans, isFront, isNormalPosition, isMovement, isAction, scale, guid);
         }
         else if (trainersIds.Contains(number))
         {
-            return await CreateTrainersCard(number, trans, isFront, isNormalPosition, isMovement, isAction, scale);
+            return await CreateTrainersCard(number, trans, isFront, isNormalPosition, isMovement, isAction, scale, guid);
         }
         else
         {
@@ -72,10 +81,10 @@ public class CardCreator : MonoBehaviour
     /// <param name="isMovement"></param>
     /// <param name="scale"></param>
     /// <returns></returns>
-    private async Task<MemberController> CreateMemberCard(int number, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1)
+    private async Task<MemberController> CreateMemberCard(int number, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1, Guid guid = default(Guid))
     {
         MemberController card = Instantiate(memberPrefab, trans);
-        card.Init(number);
+        card.Init(number, guid);
         card.transform.localScale = new Vector2(scale, scale);
         card.transform.localPosition = Vector2.zero;
         // 道具を透過
@@ -122,16 +131,16 @@ public class CardCreator : MonoBehaviour
     /// <param name="isMovement"></param>
     /// <param name="scale"></param>
     /// <returns></returns>
-    public async Task<MemberController> CreateMemberCard(MemberController member, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1)
+    public async Task<MemberController> CreateMemberCard(MemberModel model, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1, Guid guid = default(Guid))
     {
         MemberController card = Instantiate(memberPrefab, trans);
-        card.Init(member.model as MemberModel);
+        card.Init(model as MemberModel, guid);
         card.transform.localScale = new Vector2(scale, scale);
         card.transform.localPosition = Vector2.zero;
         // 道具
-        if ((member.model as MemberModel).belongings != 0)
+        if (model.belongings != 0)
         {
-            card.SetBelongings((member.model as MemberModel).belongings);
+            card.SetBelongings(model.belongings);
         }
         else
         {
@@ -140,7 +149,7 @@ public class CardCreator : MonoBehaviour
         // 状態異常を透過
         card.ResetSpecialConditions();
         // energyを透過
-        if ((member.model as MemberModel).energyCount <= 0)
+        if (model.energyCount <= 0)
         {
             card.hideEnergy();
         }
@@ -186,10 +195,10 @@ public class CardCreator : MonoBehaviour
     /// <param name="isMovement">D&D可能か</param>
     /// <param name="scale">サイズ</param>
     /// <returns></returns>
-    private async Task<TrainersController> CreateTrainersCard(int number, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1)
+    private async Task<TrainersController> CreateTrainersCard(int number, Transform trans, bool isFront, bool isNormalPosition, bool isMovement, bool isAction, float scale = 1, Guid guid = default(Guid))
     {
         TrainersController card = Instantiate(trainersPrefab, trans);
-        card.Init(number);
+        card.Init(number, guid);
         card.transform.localScale = new Vector2(scale, scale);
         card.transform.localPosition = Vector2.zero;
 
@@ -231,5 +240,32 @@ public class CardCreator : MonoBehaviour
             card.transform.position = new Vector3(card.transform.position.x, basePositionY + i, card.transform.position.z);
             await Awaitable.WaitForSecondsAsync(0.001f);
         }
+    }
+
+    public string GetEnemyTransformName(string transName)
+    {
+        string name = "";
+        switch (transName)
+        {
+            case "PlayerBattleField":
+                name = "EnemyBattleField";
+                break;
+            case "PlayerBenchField1":
+                name = "EnemyBenchField1";
+                break;
+            case "PlayerBenchField2":
+                name = "EnemyBenchField2";
+                break;
+            case "PlayerBenchField3":
+                name = "EnemyBenchField3";
+                break;
+            case "PlayerOffline":
+                name = "EnemyOffline";
+                break;
+            case "PlayerHand":
+                name = "EnemyHand";
+                break;
+        }
+        return name;
     }
 }

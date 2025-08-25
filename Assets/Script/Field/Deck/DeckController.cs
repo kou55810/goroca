@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
 /// デッキコントローラー
 /// </summary>
-public class DeckController : MonoBehaviour
+public class DeckController : MonoBehaviourPun
 {
     /// <summary>
     /// カードビュー
@@ -42,7 +45,17 @@ public class DeckController : MonoBehaviour
     /// </summary>
     public void Shuffle()
     {
-
+        int seed = (int)DateTime.Now.Ticks;
+        System.Random rng = new System.Random(seed);
+        int n = model.cards.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            int value = model.cards[k];
+            model.cards[k] = model.cards[n];
+            model.cards[n] = value;
+        }
     }
 
     /// <summary>
@@ -51,6 +64,11 @@ public class DeckController : MonoBehaviour
     /// <returns></returns>
     public void Draw()
     {
+        string parentName = this.transform.parent.name;
+        if (!parentName.Equals("PlayerDeck"))
+        {
+            return;
+        }
         if (CheckDeckCountZero())
         {
             return;
@@ -79,12 +97,18 @@ public class DeckController : MonoBehaviour
     }
 
     /// <summary>
-    /// デッキにカードをセットする
+    /// デッキボトムにカードをセットする
     /// </summary>
     /// <param name="cards"></param>
     public void SetCardIds(List<int> cards)
     {
         model.cards = cards;
+        CheckDeckCountZero();
+    }
+
+    public void InsertBottomCard(int id)
+    {
+        model.cards.Insert(0, id);
         CheckDeckCountZero();
     }
 
@@ -98,6 +122,10 @@ public class DeckController : MonoBehaviour
         if (check)
         {
             this.GetComponent<CanvasGroup>().alpha = 0;
+        }
+        else
+        {
+            this.GetComponent<CanvasGroup>().alpha = 100;
         }
         return check;
     }

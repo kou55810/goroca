@@ -88,6 +88,7 @@ public class MemberModel : CardModel
 
     public MemberModel(int cardId)
     {
+        Debug.Log(cardId);
         MemberEntity cardEntity = Resources.Load<MemberEntity>("EntityList/Member/Card" + cardId);
         id = cardEntity.id;
         name = cardEntity.name;
@@ -109,5 +110,31 @@ public class MemberModel : CardModel
         weakness = cardEntity.weakness;
         belongings = cardEntity.belongings;
         memberType = cardEntity.memberType;
+    }
+
+    public MemberModel(MemberModel model)
+    {
+        MemberEntity cardEntity = Resources.Load<MemberEntity>("EntityList/Member/Card" + model.id);
+        id = model.id;
+        name = model.name;
+        cardType = model.cardType;
+        cardImage = cardEntity.cardImage;
+        background = cardEntity.background;
+        backside = cardEntity.backside;
+        typeFrame = cardEntity.typeFrame;
+        evolutionaryOrder = cardEntity.evolutionaryOrder;
+
+        hp = model.hp;
+        restHP = model.restHP;
+        clubType = model.clubType;
+        attack1 = cardEntity.attack1;
+        attack2 = cardEntity.attack2;
+        ability = cardEntity.ability;
+        dropEnergy = model.dropEnergy;
+        energyCount = model.energyCount;
+        dropEnergyImage = cardEntity.dropEnergyImage;
+        weakness = model.weakness;
+        belongings = model.belongings;
+        memberType = model.memberType;
     }
 }

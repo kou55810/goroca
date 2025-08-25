@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,16 @@ public class MemberController : AbstractCardController
     /// カード生成処理
     /// </summary>
     /// <param name="cardID">Card ID</param>
-    public void Init(int cardID)
+    public void Init(int cardID, Guid guid = default(Guid))
     {
+        if (guid.Equals(Guid.Empty))
+        {
+            this.guid = Guid.NewGuid();
+        }
+        else
+        {
+            this.guid = guid;
+        }
         model = new MemberModel(cardID); // カードデータを生成
         (view as MemberView).Show(model as MemberModel); // 表示
     }
@@ -24,9 +33,17 @@ public class MemberController : AbstractCardController
     /// カード生成処理(modelから引き継ぎ)
     /// </summary>
     /// <param name="member"></param>
-    public void Init(MemberModel member)
+    public void Init(MemberModel member, Guid guid = default(Guid))
     {
-        this.model = member; // カードデータを生成
+        if (guid.Equals(Guid.Empty))
+        {
+            this.guid = Guid.NewGuid();
+        }
+        else
+        {
+            this.guid = guid;
+        }
+        model = new MemberModel(member);
         (view as MemberView).Show(model as MemberModel); // 表示
     }
 
@@ -165,6 +182,15 @@ public class MemberController : AbstractCardController
                 break;
         }
         
+    }
+
+    public void OnClick_SpecialConditions()
+    {
+        if (this.transform.parent.name.Contains("Enemy")) {
+            return;
+        }
+        ResetSpecialConditions();
+        GameManager.instance.RemoveSpecialConditions(guid);
     }
 
     /// <summary>
