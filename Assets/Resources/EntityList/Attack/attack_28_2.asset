@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 585cd6605fb53c042a57d2a4e98388a0, type: 3}
-  m_Name: attack_11_2
+  m_Name: attack_28_2
   m_EditorClassIdentifier: 
-  energy: 1
-  damage: 10
-  attackName: "\u3093\u3046\u30FB\u30FB\u30FB"
-  attackEffect: 
+  energy: 4
+  damage: 130
+  attackName: "\u8D77\u304D\u3066\u308B\u3082\u3093\uFF01"
+  attackEffect: "\u3053\u306E\u30E1\u30F3\u30D0\u30FC\u306B\u3082\uFF12\uFF10\u30C0\u30E1\u30FC\u30B8"
