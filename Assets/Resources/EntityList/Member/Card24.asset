@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a255e03ad0de0df4f90b74afb33d7a0b, type: 3}
   m_Name: Card24
   m_EditorClassIdentifier: 
-  id: 28
-  name: "\u306D\u307C\u3051\u307E\u306A\u3053EX"
+  id: 24
+  name: "\u304A\u3060\u307E\u304DEX"
   cardType: 0
-  cardImage: {fileID: -7984929902847940331, guid: 3796e01bd4af0fc46a4b4e7ab0af0d02, type: 3}
-  typeFrame: {fileID: 5422445586610133770, guid: 668fb9d289478ff43b2b0a7b4ec99370, type: 3}
+  cardImage: {fileID: 4552519228060579229, guid: 3c16a8843e0d70c4d9c0a5c1ee4410e9, type: 3}
+  typeFrame: {fileID: 3650194198983326740, guid: 25932b40072876049aeb0543209dcc80, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
-  hp: 150
-  clubType: 0
-  attack1: {fileID: 11400000, guid: 27a335245f2d9c945b8d2ca34da13b57, type: 2}
-  attack2: {fileID: 11400000, guid: ae4fd975d05ab12439aaacb5dc1a2abc, type: 2}
-  ability: {fileID: 0}
+  hp: 160
+  clubType: 1
+  attack1: {fileID: 0}
+  attack2: {fileID: 11400000, guid: 9eef33de8071e8e499e2a07b3c363ef1, type: 2}
+  ability: {fileID: 11400000, guid: c47edb57d76c04d45b1694cc0ac344be, type: 2}
   specialConditions: 
-  dropEnergy: 1
-  weakness: 7
+  dropEnergy: 4
+  weakness: 3
   belongings: 0
-  memberType: 2
-  evolutionaryOrder: {fileID: 11400000, guid: e0409baaa3c70404aa752db857862979, type: 2}
-  dropEnergyImage: {fileID: 8351799477281951970, guid: 5bf35aff862bd6f418da3b4d8ea33be6, type: 3}
+  memberType: 0
+  evolutionaryOrder: {fileID: 0}
+  dropEnergyImage: {fileID: -4035974675202808253, guid: fe2bbba06a1460c4aa55375c11e8e0d1, type: 3}
   belongingsImage: {fileID: 0}
   specialConditionsImage: {fileID: 0}
   isEX: 1

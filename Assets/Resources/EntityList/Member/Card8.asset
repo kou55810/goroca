@@ -15,21 +15,21 @@ MonoBehaviour:
   id: 8
   name: "\u30A8\u30D6\u30EA\u30F4\u30A1\u30C7\u30A3"
   cardType: 0
-  cardImage: {fileID: -7984929902847940331, guid: 3796e01bd4af0fc46a4b4e7ab0af0d02, type: 3}
-  typeFrame: {fileID: 5422445586610133770, guid: 668fb9d289478ff43b2b0a7b4ec99370, type: 3}
+  cardImage: {fileID: 988132215310479151, guid: 186cf4f33c167394584ec10ad610a50b, type: 3}
+  typeFrame: {fileID: -581149688827120029, guid: 9e0584724783e5947a688042694e31fa, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
   hp: 110
-  clubType: 0
-  attack1: {fileID: 11400000, guid: 27a335245f2d9c945b8d2ca34da13b57, type: 2}
-  attack2: {fileID: 11400000, guid: ae4fd975d05ab12439aaacb5dc1a2abc, type: 2}
+  clubType: 4
+  attack1: {fileID: 11400000, guid: f06931d9dd77bca48b74b490ad3f0189, type: 2}
+  attack2: {fileID: 0}
   ability: {fileID: 0}
   specialConditions: 
   dropEnergy: 1
-  weakness: 7
+  weakness: 6
   belongings: 0
-  memberType: 2
-  evolutionaryOrder: {fileID: 11400000, guid: e0409baaa3c70404aa752db857862979, type: 2}
+  memberType: 1
+  evolutionaryOrder: {fileID: 11400000, guid: 9f3d9ba18644cc643a1f7d092e5b5a7f, type: 2}
   dropEnergyImage: {fileID: 8351799477281951970, guid: 5bf35aff862bd6f418da3b4d8ea33be6, type: 3}
   belongingsImage: {fileID: 0}
   specialConditionsImage: {fileID: 0}
