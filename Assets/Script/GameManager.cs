@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] CardListField cardListField;
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerData enemyData;
+    [SerializeField] Button readyButton;
 
     public Dictionary<Guid, AbstractCardController> enemyCards = new Dictionary<Guid, AbstractCardController>();
 
@@ -324,6 +326,18 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void OnClick_EndButton()
     {
+        if(!IsStunby())
+        {
+            // ターン終了処理
+            if (turnPlayerId.Equals(Guid.Parse(PhotonNetwork.LocalPlayer.UserId)))
+            {
+                photonView.RPC(nameof(RPCTurnEnd), RpcTarget.All, enemyData.playerId.ToString());
+            }
+        }
+    }
+
+    public void OnClick_ReadyButton()
+    {
         if (IsStunby())
         {
             GameObject battleField = GameObject.Find("PlayerBattleField");
@@ -331,14 +345,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 turnCount = 1;
                 ReadyCount();
-            }
-        }
-        else
-        {
-            // ターン終了処理
-            if (turnPlayerId.Equals(Guid.Parse(PhotonNetwork.LocalPlayer.UserId)))
-            {
-                photonView.RPC(nameof(RPCTurnEnd), RpcTarget.All, enemyData.playerId.ToString());
+                readyButton.gameObject.SetActive(false);
             }
         }
     }
