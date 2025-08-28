@@ -15,15 +15,15 @@ MonoBehaviour:
   id: 2
   name: "\u307A\u3074\u3053"
   cardType: 0
-  cardImage: {fileID: -7984929902847940331, guid: 3796e01bd4af0fc46a4b4e7ab0af0d02, type: 3}
+  cardImage: {fileID: 1305459141983647107, guid: b521c20aa16741748872b4ca9cc30200, type: 3}
   typeFrame: {fileID: 5422445586610133770, guid: 668fb9d289478ff43b2b0a7b4ec99370, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
   hp: 60
   clubType: 0
-  attack1: {fileID: 11400000, guid: 4acab720cf707f842aae0a38e0a167ac, type: 2}
+  attack1: {fileID: 11400000, guid: 65252a71d3f8fc24c9f5b13594eaafdb, type: 2}
   attack2: {fileID: 11400000, guid: b6e90d0008d512d4c9e009815ee4fdd3, type: 2}
-  ability: {fileID: 0}
+  ability: {fileID: 11400000, guid: 4c0c7618bdbc26445a867a783b0df74a, type: 2}
   specialConditions: 
   dropEnergy: 1
   weakness: 7

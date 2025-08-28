@@ -15,22 +15,22 @@ MonoBehaviour:
   id: 6
   name: "\u307D\u308F\u3050\u3061\u3087"
   cardType: 0
-  cardImage: {fileID: -7984929902847940331, guid: 3796e01bd4af0fc46a4b4e7ab0af0d02, type: 3}
-  typeFrame: {fileID: 5422445586610133770, guid: 668fb9d289478ff43b2b0a7b4ec99370, type: 3}
+  cardImage: {fileID: 4832855506386469203, guid: fc4852fbe00d6e4458cb142b8eac3c5b, type: 3}
+  typeFrame: {fileID: 3650194198983326740, guid: 25932b40072876049aeb0543209dcc80, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
   hp: 80
-  clubType: 0
-  attack1: {fileID: 11400000, guid: 27a335245f2d9c945b8d2ca34da13b57, type: 2}
-  attack2: {fileID: 11400000, guid: ae4fd975d05ab12439aaacb5dc1a2abc, type: 2}
-  ability: {fileID: 0}
+  clubType: 1
+  attack1: {fileID: 0}
+  attack2: {fileID: 11400000, guid: 1019332947115844f8cb1ea761657d96, type: 2}
+  ability: {fileID: 11400000, guid: 27886e24a2349274c95b13d010564b05, type: 2}
   specialConditions: 
-  dropEnergy: 1
-  weakness: 7
+  dropEnergy: 2
+  weakness: 1
   belongings: 0
   memberType: 2
-  evolutionaryOrder: {fileID: 11400000, guid: e0409baaa3c70404aa752db857862979, type: 2}
-  dropEnergyImage: {fileID: 8351799477281951970, guid: 5bf35aff862bd6f418da3b4d8ea33be6, type: 3}
+  evolutionaryOrder: {fileID: 11400000, guid: eef0e54b365c8a5419f9eb6c4aa02234, type: 2}
+  dropEnergyImage: {fileID: -4159706938791573966, guid: e9f00e476e4752c438c355c494c6f9f9, type: 3}
   belongingsImage: {fileID: 0}
   specialConditionsImage: {fileID: 0}
   isEX: 0
