@@ -18,7 +18,7 @@ public class SettingsRoom : MonoBehaviourPun
             playerName.text = PhotonNetwork.LocalPlayer.NickName;
             GrobalSettings.name = PhotonNetwork.LocalPlayer.NickName;
         }
-        dropdown.value = GrobalSettings.deckId -1;
+        dropdown.value = GrobalSettings.deckId - 1;
         int selectId = GrobalSettings.deckId;
         PhotonNetwork.LocalPlayer.NickName = playerName.text;
         GrobalSettings.name = playerName.text;
@@ -38,5 +38,10 @@ public class SettingsRoom : MonoBehaviourPun
         PhotonNetwork.LocalPlayer.NickName = playerName.text;
         int selectedDeck = dropdown.value + 1;
         GrobalSettings.deckId = selectedDeck;
+        // シングルトンインスタンスを通じてSEPlayerにアクセス
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play03ButtonClickSoundEffect();
+        }
     }
 }

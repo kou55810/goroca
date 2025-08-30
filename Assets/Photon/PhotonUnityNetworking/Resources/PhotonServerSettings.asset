@@ -57,6 +57,14 @@ MonoBehaviour:
   - RPCDamageCount
   - RPCTurnEnd
   - RPCTurnStart
+  - RPCActiveCardSE
+  - RPCAddEnergySE
+  - RPCCureDamageSE
+  - RPCDamageSE
+  - RPCDrawSE
+  - RPCMemberEvoSE
+  - RPCShuffleSE
+  - RPCUserCardSE
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

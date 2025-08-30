@@ -15,6 +15,10 @@ public class EnergyMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
         // blocksRaycastsをオフにする
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play18TouchEnergySoundEffect();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)

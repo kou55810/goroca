@@ -132,6 +132,11 @@ public class WaitRoom: MonoBehaviourPunCallbacks
             // 退室
             PhotonNetwork.LeaveRoom();
             PhotonNetwork.LeaveLobby();
+            // シングルトンインスタンスを通じてSEPlayerにアクセス
+            if (SEPlayer.instance != null)
+            {
+                SEPlayer.instance.Play03ButtonClickSoundEffect();
+            }
             SceneManager.LoadScene("TitleScene");
         }
     }
@@ -154,6 +159,11 @@ public class WaitRoom: MonoBehaviourPunCallbacks
     public void OnClick_StartButton()
     {
         GrobalSettings.playerType = PlayerType.RED;
+        // シングルトンインスタンスを通じてSEPlayerにアクセス
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play03ButtonClickSoundEffect();
+        }
         photonView.RPC(nameof(RPCShowGameScene),
             RpcTarget.OthersBuffered);
             SceneManager.LoadScene("GameScene");

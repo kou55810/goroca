@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 28905d57c78820a428b0c2e8db683c0e
+guid: 8a8625ddcdf371f44b5bdaf7f137ccfe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4458547394238226639
-    second: cardimage_25_0
+      213: -4565277893826926653
+    second: GameIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,45 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cardimage_25_0
+      name: GameIcon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 660
-        height: 880
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13fdf2074ce0022c0800000000000000
-      internalID: -4458547394238226639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cardimage_25_1
-      rect:
-        serializedVersion: 2
-        x: 614
-        y: 711
-        width: 46
-        height: 169
+        x: 5
+        y: 5
+        width: 246
+        height: 246
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4e7c96a6b2dffdf4a816df1c2569bdc7
-      internalID: -909871945
+      spriteID: 3c7a08581ffd4a0c0800000000000000
+      internalID: -4565277893826926653
       vertices: []
       indices: 
       edges: []
@@ -173,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2900a353cc6c9c34fa53d185fa781525
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -183,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cardimage_25_0: -4458547394238226639
-      cardimage_25_1: -909871945
+      GameIcon_0: -4565277893826926653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

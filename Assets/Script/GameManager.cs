@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerData enemyData;
     [SerializeField] Button readyButton;
+    [SerializeField] SEPlayer sePlayer;
 
     public Dictionary<Guid, AbstractCardController> enemyCards = new Dictionary<Guid, AbstractCardController>();
 
@@ -173,6 +174,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public System.Collections.IEnumerator GameStart()
     {
         yield return new WaitUntil(() => readyCount == 2);
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play01GameStartSoundEffect();
+        }
         photonView.RPC(nameof(RPCOpenCards), RpcTarget.All);
         photonView.RPC(nameof(RPCTurnStart), RpcTarget.All);
     }
@@ -286,6 +291,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// <param name="model"></param>
     public void ShowCardView(int id)
     {
+        sePlayer.Play11TouchCardSoundEffect();
         cardShowField.Show(id);
     }
 
@@ -326,7 +332,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void OnClick_EndButton()
     {
-        if(!IsStunby())
+        if (!IsStunby())
         {
             // ターン終了処理
             if (turnPlayerId.Equals(Guid.Parse(PhotonNetwork.LocalPlayer.UserId)))
@@ -351,8 +357,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void RPCTurnStart() {
-
+    public void RPCTurnStart()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play02TurnChangedSoundEffect();
+        }
         turnCount++; ;
         if (turnPlayerId.Equals(Guid.Parse(PhotonNetwork.LocalPlayer.UserId)))
         {
@@ -527,6 +537,113 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void DeckShuffle()
     {
         playerData.DeckShuffle();
+        photonView.RPC(nameof(RPCShuffleSE), RpcTarget.All);
+    }
+
+    public void DrawSE()
+    {
+        photonView.RPC(nameof(RPCDrawSE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCDrawSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play06DrawCardSoundEffect();
+        }
+    }
+
+    [PunRPC]
+    public void RPCShuffleSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play08ShuffleSoundEffect();
+        }
+    }
+
+    public void UserCardSE()
+    {
+        photonView.RPC(nameof(RPCUserCardSE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCUserCardSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play10UsedCardSoundEffect();
+        }
+    }
+
+    public void MemberEvoSE()
+    {
+        photonView.RPC(nameof(RPCMemberEvoSE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCMemberEvoSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play13EvoMemberSoundEffect();
+        }
+    }
+
+    public void CureDamageSE()
+    {
+        photonView.RPC(nameof(RPCCureDamageSE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCCureDamageSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play15UpHPSoundEffect();
+        }
+    }
+
+    public void DamageSE()
+    {
+        photonView.RPC(nameof(RPCDamageSE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCDamageSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play16AttackDamageSoundEffect();
+        }
+    }
+    public void AddEnergySE()
+    {
+        photonView.RPC(nameof(RPCAddEnergySE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCAddEnergySE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play19PutEnergySoundEffect();
+        }
+    }
+
+    public void ActiveCardSE()
+    {
+        photonView.RPC(nameof(RPCActiveCardSE), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RPCActiveCardSE()
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play09ActiveCardSoundEffect();
+        }
     }
 
     public void PointChanged(int point)
@@ -537,5 +654,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void RPCPointChanged(int point)
     {
         enemyData.PointChanged(point);
+    }
+
+    public void PlayClickButtonSE()
+    {
+        // シングルトンインスタンスを通じてSEPlayerにアクセス
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play03ButtonClickSoundEffect();
+        }
     }
 }

@@ -74,12 +74,18 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
                     bool frontCheck = GameManager.instance.IsStunby() ? false : isFront;
                     AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, frontCheck, isNormalPosition, isMovement, isAction, cardMagnification);
                     GameManager.instance.CreateEnemyCard(card.model.id, this.transform, frontCheck, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
+                    if ((this.name.Equals("PlayerBattleField") || this.name.Contains("PlayerBenchField")))
+                    {
+                        GameManager.instance.ActiveCardSE();
+                    }
+                    CardSE();
                 }
                 // オフラインから出る場合も新規
                 else if (card.IsParentTrans("PlayerOffline"))
                 {
                     AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
                     GameManager.instance.CreateEnemyCard(card.model.id, this.transform, isFront, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
+                    CardSE();
                 }
                 // それ以外はHPや道具を引き継ぐ
                 else
@@ -105,6 +111,7 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
             {
                 if (this.name.Equals("Background"))
                 {
+                    GameManager.instance.UserCardSE();
                     // 飴を使った場合
                     if (card.model.id == 34)
                     {
@@ -155,6 +162,14 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
             }
         }
         return false;
+    }
+
+    private void CardSE()
+    {
+        if ((this.name.Equals("PlayerBattleField") || this.name.Contains("PlayerBenchField")))
+        {
+            GameManager.instance.ActiveCardSE();
+        }
     }
 
     private async Task ShowTrainers(AbstractCardController card)

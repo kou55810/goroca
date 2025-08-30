@@ -50,6 +50,10 @@ public class CoinController : MonoBehaviour
     /// </summary>
     public async Task CoinToss()
     {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play05CoinTossSoundEffect();
+        }
         float randomValue = Random.Range(0.0f, 1.0f);
         if (randomValue < 0.5f)
         {

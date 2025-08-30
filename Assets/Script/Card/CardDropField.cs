@@ -135,6 +135,8 @@ public class CardDropField : MonoBehaviour, IDropHandler
         CardViewDropField playerOfflineField = playerOffline.GetComponent<CardViewDropField>();
         AbstractCardController trushCard = await CardCreator.instance.CreateCard(baseCard.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, false, playerOfflineField.cardMagnification);
         GameManager.instance.CreateEnemyCard(baseCard.model.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, false, playerOfflineField.cardMagnification, trushCard.guid);
+        GameManager.instance.MemberEvoSE();
+
         baseCard.DestroyCard();
     }
 
@@ -166,17 +168,27 @@ public class CardDropField : MonoBehaviour, IDropHandler
     {
         member.DamageCount(damage);
         GameManager.instance.DamageCount(member.guid, damage);
+        if (damage < 0)
+        {
+            GameManager.instance.CureDamageSE();
+        }
+        else
+        {
+            GameManager.instance.DamageSE();
+        }
     }
 
     private void AddEnergy(MemberController member)
     {
         member.AddEnergy(1);
         GameManager.instance.AddEnergyCard(member.guid, 1);
+        GameManager.instance.AddEnergySE();
     }
 
     private void MinusEnergy(MemberController member)
     {
         member.MinusEnergy(1);
         GameManager.instance.RemoveEnergyCard(member.guid, 1);
+        GameManager.instance.AddEnergySE();
     }
 }

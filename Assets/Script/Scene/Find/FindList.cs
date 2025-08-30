@@ -70,6 +70,11 @@ public class FindList : MonoBehaviourPunCallbacks
         {
             // 退室
             PhotonNetwork.LeaveLobby();
+            // シングルトンインスタンスを通じてSEPlayerにアクセス
+            if (SEPlayer.instance != null)
+            {
+                SEPlayer.instance.Play03ButtonClickSoundEffect();
+            }
             SceneManager.LoadScene("TitleScene");
         }
     }

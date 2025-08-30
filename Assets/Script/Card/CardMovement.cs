@@ -28,6 +28,10 @@ public class CardMovement: MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
         // blocksRaycastsをオフにする
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play11TouchCardSoundEffect();
+        }
     }
 
     /// <summary>
