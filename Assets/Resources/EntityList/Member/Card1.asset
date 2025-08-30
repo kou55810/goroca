@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a255e03ad0de0df4f90b74afb33d7a0b, type: 3}
-  m_Name: Card6
+  m_Name: Card1
   m_EditorClassIdentifier: 
-  id: 6
-  name: "\u307D\u308F\u3050\u3061\u3087"
+  id: 1
+  name: "\u304A\u3060\u3068\u3068\u307F\u3089"
   cardType: 0
-  cardImage: {fileID: 4832855506386469203, guid: fc4852fbe00d6e4458cb142b8eac3c5b, type: 3}
-  typeFrame: {fileID: 3650194198983326740, guid: 25932b40072876049aeb0543209dcc80, type: 3}
+  cardImage: {fileID: -332981628, guid: 1835b02411e623a4988de9ac1b41e31b, type: 3}
+  typeFrame: {fileID: -8564171253966044510, guid: 1e50706ad4b8d934b91160248e66ce62, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
-  hp: 82
-  clubType: 1
-  attack1: {fileID: 11400000, guid: 1019332947115844f8cb1ea761657d96, type: 2}
+  hp: 80
+  clubType: 2
+  attack1: {fileID: 11400000, guid: 4acab720cf707f842aae0a38e0a167ac, type: 2}
   attack2: {fileID: 0}
-  ability: {fileID: 11400000, guid: 27886e24a2349274c95b13d010564b05, type: 2}
+  ability: {fileID: 11400000, guid: 4c0c7618bdbc26445a867a783b0df74a, type: 2}
   specialConditions: 
-  dropEnergy: 2
+  dropEnergy: 1
   weakness: 1
   belongings: 0
-  memberType: 2
-  evolutionaryOrder: {fileID: 11400000, guid: eef0e54b365c8a5419f9eb6c4aa02234, type: 2}
-  dropEnergyImage: {fileID: -4159706938791573966, guid: e9f00e476e4752c438c355c494c6f9f9, type: 3}
+  memberType: 0
+  evolutionaryOrder: {fileID: 0}
+  dropEnergyImage: {fileID: 8351799477281951970, guid: 5bf35aff862bd6f418da3b4d8ea33be6, type: 3}
   belongingsImage: {fileID: 0}
   specialConditionsImage: {fileID: 0}
   isEX: 0

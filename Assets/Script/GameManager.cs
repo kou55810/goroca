@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerData enemyData;
     [SerializeField] Button readyButton;
-    [SerializeField] SEPlayer sePlayer;
 
     public Dictionary<Guid, AbstractCardController> enemyCards = new Dictionary<Guid, AbstractCardController>();
 
@@ -291,7 +290,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// <param name="model"></param>
     public void ShowCardView(int id)
     {
-        sePlayer.Play11TouchCardSoundEffect();
+        SEPlayer.instance.Play11TouchCardSoundEffect();
         cardShowField.Show(id);
     }
 

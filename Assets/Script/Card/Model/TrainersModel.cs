@@ -6,6 +6,7 @@ public class TrainersModel: CardModel
     public string effect;
     public TrainersModel(int cardId)
     {
+        Debug.Log(cardId);
         TrainersEntity cardEntity = Resources.Load<TrainersEntity>("EntityList/Trainers/Card" + cardId);
 
         id = cardEntity.id;

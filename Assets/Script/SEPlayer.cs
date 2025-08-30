@@ -184,7 +184,7 @@ public class SEPlayer : MonoBehaviour
         if (myAudioSource != null && play06DrawCardSE != null)
         {
             // 設定したクリップを一度だけ再生
-            myAudioSource.PlayOneShot(play05CoinTossSE);
+            myAudioSource.PlayOneShot(play06DrawCardSE);
             // または、myAudioSource.clip = play06DrawCardSE; myAudioSource.Play(); でもOK
             // PlayOneShotは、既に別の音が再生中でも重ねて再生できるのでSEでよく使われる
         }

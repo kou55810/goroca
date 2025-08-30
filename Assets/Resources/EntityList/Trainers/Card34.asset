@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439d2be10a98bb7418f29c1b6c70912a, type: 3}
   m_Name: Card34
   m_EditorClassIdentifier: 
-  id: 38
-  name: "\u30E1\u30F3\u30B7\u30E7\u30F3"
+  id: 34
+  name: "\u3044\u3061\u3054\u306E\u3042\u3081"
   cardType: 1
-  cardImage: {fileID: 6744827600370912067, guid: e93edead5d763764e8fbde40c7dc277c, type: 3}
+  cardImage: {fileID: -7829063225308659742, guid: 16392ba64dd93c84ea1162fd2d953f13, type: 3}
   typeFrame: {fileID: -8192616353408732021, guid: 534d8a42d90d91042995b51502e3de8e, type: 3}
   background: {fileID: 3150285057107050492, guid: ebd183bd7fcb5b2468c0de79091f9419, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
-  effect: "\u76F8\u624B\u306E\u30A2\u30AF\u30C6\u30A3\u30D6\u30E1\u30F3\u30D0\u30FC\u3092\u30AA\u30D5\u30E9\u30A4\u30F3\u30E1\u30F3\u30D0\u30FC\u3068\u5165\u308C\u66FF\u3048\u308B\u3002\uFF08\u30A2\u30AF\u30C6\u30A3\u30D6\u306B\u51FA\u3059\u30E1\u30F3\u30D0\u30FC\u306F\u76F8\u624B\u304C\u9078\u3076\u3002\uFF09"
-  trainersType: 2
+  effect: "\u624B\u672D\u304B\u3089\u53E4\u53C2\u3092\u9078\u3073\u5E38\u9023\u3092\u3068\u3070\u3057\u3066\u9032\u5316\u3055\u305B\u308B\uFF08\u6700\u521D\u306E\u756A\u3084\u51FA\u3057\u305F\u3070\u3063\u304B\u306F\u30C0\u30E1\uFF09"
+  trainersType: 0

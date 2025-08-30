@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 439d2be10a98bb7418f29c1b6c70912a, type: 3}
-  m_Name: Card30
+  m_Name: Card50
   m_EditorClassIdentifier: 
-  id: 34
-  name: "\u3044\u3061\u3054\u306E\u3042\u3081"
+  id: 50
+  name: "\u3061\u304F\u3061\u304F\u3053\u3068\u3070"
   cardType: 1
-  cardImage: {fileID: -7829063225308659742, guid: 16392ba64dd93c84ea1162fd2d953f13, type: 3}
+  cardImage: {fileID: -5274486789004356655, guid: 40c28d002ec3f0944a0b649836745a17, type: 3}
   typeFrame: {fileID: -8192616353408732021, guid: 534d8a42d90d91042995b51502e3de8e, type: 3}
   background: {fileID: 3150285057107050492, guid: ebd183bd7fcb5b2468c0de79091f9419, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
-  effect: "\u624B\u672D\u304B\u3089\u53E4\u53C2\u3092\u9078\u3073\u5E38\u9023\u3092\u3068\u3070\u3057\u3066\u9032\u5316\u3055\u305B\u308B\uFF08\u6700\u521D\u306E\u756A\u3084\u51FA\u3057\u305F\u3070\u3063\u304B\u306F\u30C0\u30E1\uFF09"
-  trainersType: 0
+  effect: "\u3053\u306E\u3082\u3061\u3082\u306E\u3092\u6301\u3063\u3066\u3044\u308B\u30E1\u30F3\u30D0\u30FC\u306E\u6700\u5927\uFF2D\uFF30\u3092\u30D7\u30E9\u30B9\uFF12\uFF10\u3059\u308B"
+  trainersType: 1
