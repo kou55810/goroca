@@ -93,7 +93,7 @@ public class MemberController : AbstractCardController
     public void SetBelongings(int belongingsNumber)
     {
         (this.model as MemberModel).belongings = belongingsNumber;
-        (view as MemberView).SetBelongingsImage(belongingsNumber);
+        (view as MemberView).SetBelongingsImage(guid, belongingsNumber);
         Transform belongings = this.transform.Find("belongings");
         // 伝説の装備ならHP+20
         if (belongingsNumber == 49)

@@ -471,6 +471,32 @@ public class GameManager : MonoBehaviourPunCallbacks
         enemyCards.Add(Guid.Parse(guid), card);
     }
 
+    public void SetBelongings(Guid guid, int belongingsId)
+    {  
+        photonView.RPC(nameof(RPCSetBelongings), RpcTarget.Others, guid.ToString() ,belongingsId);
+    }
+    [PunRPC]
+    public void RPCSetBelongings(string guid, int belongingsId)
+    {
+        if (enemyCards.ContainsKey(Guid.Parse(guid)))
+        {
+            (enemyCards[Guid.Parse(guid)] as MemberController).SetBelongings(belongingsId);
+        }
+    }
+
+    public void DisableBelongings(Guid guid)
+    {  
+        photonView.RPC(nameof(RPCDisableBelongings), RpcTarget.Others, guid.ToString());
+    }
+    [PunRPC]
+    public void RPCDisableBelongings(string guid)
+    {
+        if (enemyCards.ContainsKey(Guid.Parse(guid)))
+        {
+            (enemyCards[Guid.Parse(guid)] as MemberController).DisableBelongings();
+        }
+    }
+
     public void DestroyCard(Guid guid)
     {
         photonView.RPC(nameof(RPCDestroyCard), RpcTarget.Others, guid.ToString());

@@ -109,6 +109,7 @@ public class CardDropField : MonoBehaviour, IDropHandler
                 if (((putCard as TrainersController).model as TrainersModel).trainersType.Equals(TrainersType.BELONGINGS))
                 {
                     (baseCard as MemberController).SetBelongings(putCard.model.id);
+                    GameManager.instance.SetBelongings(baseCard.guid, putCard.model.id);
                     putCard.DestroyCard();
                 }
             }

@@ -31,6 +31,10 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
 
     public async void OnDrop(PointerEventData eventData)
     {
+        if (this.name.Contains("Enemy")){
+            // 敵の場にはカードを置けない
+            return;
+        }
         if (eventData.pointerDrag.GetComponent<AbstractCardController>() is null)
         {
             // 道具を捨てた場合
@@ -42,6 +46,7 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
                 AbstractCardController dropCard = await CardCreator.instance.CreateCard(belonging.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification);
                 GameManager.instance.CreateEnemyCard(belonging.id, playerOffline.transform, playerOfflineField.isFront, playerOfflineField.isNormalPosition, playerOfflineField.isMovement, isAction, playerOfflineField.cardMagnification, dropCard.guid);
                 belonging.DisableBelongings();
+                GameManager.instance.DisableBelongings(belonging.guid);
                 // Destroy(belonging.gameObject);
             }
             return;
@@ -54,10 +59,6 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
         AbstractCardController card = eventData.pointerDrag.GetComponent<AbstractCardController>(); // ドラッグしてきた情報からCardControllerを取得
         if (!CheckCardType(card))
         {
-            return;
-        }
-        if (this.name.Contains("Enemy")){
-            // 敵の場にはカードを置けない
             return;
         }
         if (card.movement != null) // もしカードがあれば、

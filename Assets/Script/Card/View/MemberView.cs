@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -105,9 +106,9 @@ public class MemberView : CardView
     /// 道具をセットする
     /// </summary>
     /// <param name="id"></param>
-    public void SetBelongingsImage(int id)
+    public void SetBelongingsImage(Guid guid, int id)
     {
-        belongingsView.SetBelongingsImage(id);
+        belongingsView.SetBelongingsImage(guid, id);
     }
 
     /// <summary>
