@@ -20,7 +20,7 @@ MonoBehaviour:
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
   hp: 60
-  clubType: 0
+  clubType: 1
   attack1: {fileID: 11400000, guid: 1fea5205e3e045c4c9708dd8b54e7998, type: 2}
   attack2: {fileID: 11400000, guid: f123259adc0620c4b81789d376a723db, type: 2}
   ability: {fileID: 0}

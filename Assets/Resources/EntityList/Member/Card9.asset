@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 9
   name: "\u3059\u3068\u304D\u3083\u3093"
   cardType: 0
-  cardImage: {fileID: 5209873839641293965, guid: 3229ea2374c8c3e40aab90b41d4c4c37, type: 3}
+  cardImage: {fileID: -5045860176703529583, guid: b515ebf85041f4a4fbd18e6e2a425fb9, type: 3}
   typeFrame: {fileID: 5422445586610133770, guid: 668fb9d289478ff43b2b0a7b4ec99370, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
