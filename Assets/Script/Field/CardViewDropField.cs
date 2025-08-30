@@ -66,7 +66,7 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
             if (card is MemberController)
             {
                 MemberController member = card as MemberController;
-                bool frontCheck = GameManager.instance.IsStunby() ? false : isFront;
+                bool frontCheck = GameManager.instance.IsStunby() && !this.name.Equals("PlayerHand") ? false : isFront;
                 // 手札から出た場合は新規
                 if (card.IsParentTrans("PlayerHand"))
                 {

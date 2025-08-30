@@ -68,6 +68,32 @@ public class MemberView : CardView
         memberType.text = cardModel.memberType.GetDescription();
         dropEnergyImage.sprite = cardModel.dropEnergyImage;
         weaknessText.text = cardModel.weakness.GetDescription();
+        switch (cardModel.weakness)
+        {
+            case ClubType.ALCOHOL:
+                weaknessText.color = Color.purple;
+                break;
+            case ClubType.ANIME:
+                weaknessText.color = Color.black;
+                break;
+            case ClubType.BOARD_GAME:
+                weaknessText.color = Color.skyBlue;
+                break;
+            case ClubType.DIET:
+                weaknessText.color = Color.yellow;
+                break;
+            case ClubType.GAME:
+                weaknessText.color = Color.red;
+                break;
+            case ClubType.MOVIE:
+                weaknessText.color = Color.blue;
+                break;
+            case ClubType.MYSTERY:
+                weaknessText.color = Color.green;
+                break;
+            case ClubType.NONE:
+                break;   
+        }
         // 特性
         if (cardModel.ability is null)
         {
