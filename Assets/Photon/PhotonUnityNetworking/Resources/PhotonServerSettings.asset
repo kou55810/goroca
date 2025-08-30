@@ -65,6 +65,10 @@ MonoBehaviour:
   - RPCMemberEvoSE
   - RPCShuffleSE
   - RPCUserCardSE
+  - RPCCoinShow
+  - RPCHide_Coin
+  - RPCGoCoinToss
+  - RPCSetFirstPlayerIdAsync
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

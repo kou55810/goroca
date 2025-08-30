@@ -83,6 +83,31 @@ public class CoinController : MonoBehaviour
         isCoinToss = false;
     }
 
+    public async Task CoinToss(bool coinResult)
+    {
+        if (SEPlayer.instance != null)
+        {
+            SEPlayer.instance.Play05CoinTossSoundEffect();
+        }
+        ChangeFrontAndBack(coinResult);
+        KeepRollCoin();
+        int distance = 10;
+        for (int i = 0; i <= COIN_TOSS_HEIGHT; i += distance)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + distance, this.transform.position.z);
+            await Awaitable.WaitForSecondsAsync(COIN_TOSS_SPEED);
+        }
+
+        await Awaitable.WaitForSecondsAsync(0.2f);
+
+        for (int i = 0; i <= COIN_TOSS_HEIGHT; i += distance)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - distance, this.transform.position.z);
+            await Awaitable.WaitForSecondsAsync(COIN_TOSS_SPEED);
+        }
+        isCoinToss = false;
+    }
+
     /// <summary>
     /// コインを回転し続ける
     /// </summary>
@@ -123,6 +148,8 @@ public class CoinController : MonoBehaviour
     /// </summary>
     public void OnClick_Coin()
     {
-        CoinToss();
+        this.isFront = (UnityEngine.Random.Range(0, 2) == 0);
+        CoinToss(this.isFront);
+        GameManager.instance.GoCoinToss(this.isFront);
     }
 }

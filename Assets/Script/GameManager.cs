@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] CoinTossField coinTossField;
     [SerializeField] CardShowField cardShowField;
     [SerializeField] CardListField cardListField;
+    [SerializeField] PlayerShowTextField playerShowTextField;
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerData enemyData;
     [SerializeField] Button readyButton;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             instance = this;
             PhotonNetwork.AutomaticallySyncScene = false;
         }
-        coinTossField.Hide();
+        playerShowTextField.Hide();
         cardShowField.Hide();
         cardListField.Hide();
     }
@@ -59,7 +60,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             DecisionFirstPlayer();
         }
-        Ready();
     }
 
     /// <summary>
@@ -67,7 +67,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void DecisionFirstPlayer()
     {
-        photonView.RPC(nameof(RPCSetFirstPlayerId), RpcTarget.All, PhotonNetwork.PlayerList[UnityEngine.Random.Range(0, 2)].UserId);
+        int startPlayerNum = UnityEngine.Random.Range(0, 2);
+        bool isStartPlayer = (startPlayerNum == 0);
+        photonView.RPC(nameof(RPCSetFirstPlayerIdAsync), RpcTarget.All, PhotonNetwork.PlayerList[startPlayerNum].UserId);
     }
 
     /// <summary>
@@ -75,10 +77,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     /// <param name="userId"></param>
     [PunRPC]
-    public void RPCSetFirstPlayerId(string userId)
+    public async Task RPCSetFirstPlayerIdAsync(string userId)
     {
+        bool isFirstPlayer = userId.Equals(PhotonNetwork.LocalPlayer.UserId.ToString());
+        await Awaitable.WaitForSecondsAsync(2.0f);
+        coinTossField.GoCoinToss(PhotonNetwork.MasterClient.UserId.Equals(userId));
+        await Awaitable.WaitForSecondsAsync(2.0f);
+        playerShowTextField.Show();
+        playerShowTextField.SetText(isFirstPlayer);
+        await Awaitable.WaitForSecondsAsync(2.0f);
         firstPlayerId = Guid.Parse(userId);
-        turnPlayerId = Guid.Parse(userId);
+        turnPlayerId = Guid.Parse(userId);   
+        coinTossField.Hide();
+        playerShowTextField.Hide();
+        Ready();
     }
 
     /// <summary>
@@ -239,7 +251,28 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnClick_Coin()
     {
+        if (PhotonNetwork.LocalPlayer.UserId.Equals(turnPlayerId.ToString())) {
+            coinTossField.Show();
+            photonView.RPC(nameof(RPCCoinShow), RpcTarget.Others);
+        }
+    }
+
+    [PunRPC]
+    public void RPCCoinShow()
+    {
         coinTossField.Show();
+    }
+
+    public void Hide_Coin()
+    {
+        coinTossField.Hide();
+        photonView.RPC(nameof(RPCHide_Coin), RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void RPCHide_Coin()
+    {
+        coinTossField.Hide();
     }
 
     /// <summary>
@@ -662,5 +695,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             SEPlayer.instance.Play03ButtonClickSoundEffect();
         }
+    }
+
+    public void GoCoinToss(bool coinResult)
+    {
+        photonView.RPC(nameof(RPCGoCoinToss), RpcTarget.Others, coinResult);
+    }
+    [PunRPC]
+    public void RPCGoCoinToss(bool coinResult)
+    {
+        coinTossField.GoCoinToss(coinResult);
     }
 }

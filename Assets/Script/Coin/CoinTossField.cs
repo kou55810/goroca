@@ -1,6 +1,7 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class CoinTossField : MonoBehaviour
+public class CoinTossField : MonoBehaviourPun
 {
     [SerializeField] CoinController coinPrefab;
     [SerializeField] public Transform coinField;
@@ -24,6 +25,16 @@ public class CoinTossField : MonoBehaviour
 
     public void OnClick_CloseButton()
     {
-        Hide();
+        if (PhotonNetwork.LocalPlayer.UserId.Equals(GameManager.instance.turnPlayerId.ToString()))
+        {
+            GameManager.instance.Hide_Coin();
+        }
+    }
+    
+    public void GoCoinToss(bool coinResult)
+    {
+        if (coin != null) {
+            coin.CoinToss(coinResult);
+        }
     }
 }
