@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energy: 2
   damage: 50
-  attackName: "\uFF7D\uFF98\uFF97\uFF9D\uFF76"
+  attackName: "\u30B3\u30F3\u30CB\u30C1\u30CF"
   attackEffect: 
