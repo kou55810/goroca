@@ -21,8 +21,8 @@ MonoBehaviour:
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
   hp: 150
   clubType: 5
-  attack1: {fileID: 0}
-  attack2: {fileID: 11400000, guid: 3bffcebc1cbe2dc45b9d2c243feafd19, type: 2}
+  attack1: {fileID: 11400000, guid: 3bffcebc1cbe2dc45b9d2c243feafd19, type: 2}
+  attack2: {fileID: 0}
   ability: {fileID: 11400000, guid: 2b3de71a2635d6f41b9749589123fa1e, type: 2}
   specialConditions: 
   dropEnergy: 2
