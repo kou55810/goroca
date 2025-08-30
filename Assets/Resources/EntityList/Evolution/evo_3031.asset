@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: evo_3031
   m_EditorClassIdentifier: 
   memberType: 1
-  afterMemberId: 29
-  beforeMemberId: 0
+  afterMemberId: 0
+  beforeMemberId: 29

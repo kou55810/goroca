@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43217a1583c6a8448be794d3a3baae0, type: 3}
   m_Name: evo_29
   m_EditorClassIdentifier: 
-  memberType: 1
-  afterMemberId: 0
-  beforeMemberId: 30
+  memberType: 0
+  afterMemberId: 30
+  beforeMemberId: 0

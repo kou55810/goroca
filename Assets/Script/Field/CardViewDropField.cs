@@ -56,6 +56,10 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
         {
             return;
         }
+        if (this.name.Contains("Enemy")){
+            // 敵の場にはカードを置けない
+            return;
+        }
         if (card.movement != null) // もしカードがあれば、
         {
             if (card is MemberController)
