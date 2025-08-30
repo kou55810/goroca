@@ -89,6 +89,10 @@ public class CardDropField : MonoBehaviour, IDropHandler
                     {
                         Evolution(baseCard, putMember);
                     }
+                    else if(baseCard.GetEvolutionData().afterMemberId == 30 &&
+                        putMember.GetEvolutionData().beforeMemberId == 30){
+                        Evolution(baseCard, putMember);
+                    }
                     else
                     {
                         return;

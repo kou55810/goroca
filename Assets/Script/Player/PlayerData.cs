@@ -80,7 +80,6 @@ public class PlayerData : MonoBehaviourPun
     public void Draw()
     {
         deck.Draw();
-        GameManager.instance.DrawSE();
     }
 
     /// <summary>

@@ -614,7 +614,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (SEPlayer.instance != null)
         {
-            SEPlayer.instance.Play16AttackDamageSoundEffect();
+            SEPlayer.instance.Play14DownHPSoundEffect();
         }
     }
     public void AddEnergySE()

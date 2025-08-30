@@ -73,6 +73,7 @@ public class DeckController : MonoBehaviourPun
         {
             return;
         }
+        GameManager.instance.DrawSE();
         int topCardIndex = model.cards.Count - 1;
         int drawCardNumber = model.cards[topCardIndex];
         model.cards.RemoveAt(topCardIndex);
