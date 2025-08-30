@@ -65,7 +65,7 @@ public class CoinController : MonoBehaviour
         }
 
         ChangeFrontAndBack(isFront);
-        KeepRollCoin();
+        KeepRollCoin(isFront);
         int distance = 10;
         for (int i = 0; i <= COIN_TOSS_HEIGHT; i += distance)
         {
@@ -90,7 +90,7 @@ public class CoinController : MonoBehaviour
             SEPlayer.instance.Play05CoinTossSoundEffect();
         }
         ChangeFrontAndBack(coinResult);
-        KeepRollCoin();
+        KeepRollCoin(coinResult);
         int distance = 10;
         for (int i = 0; i <= COIN_TOSS_HEIGHT; i += distance)
         {
@@ -112,13 +112,14 @@ public class CoinController : MonoBehaviour
     /// コインを回転し続ける
     /// </summary>
     /// <returns></returns>
-    public async Task KeepRollCoin()
+    public async Task KeepRollCoin(bool coinResult)
     {
         isCoinToss = true;
         while (isCoinToss)
         {
             await RollCoin();
         }
+        ChangeFrontAndBack(coinResult);
     }
 
     /// <summary>
