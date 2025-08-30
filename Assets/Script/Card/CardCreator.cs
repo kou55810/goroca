@@ -140,6 +140,11 @@ public class CardCreator : MonoBehaviour
         // 道具
         if (model.belongings != 0)
         {
+            if (model.belongings == 49)
+            {
+                model.hp -= 20;
+                model.restHP -= 20;
+            }
             card.SetBelongings(model.belongings);
         }
         else

@@ -86,6 +86,8 @@ public class MemberModel : CardModel
     /// </summary>
     public Sprite specialConditionsImage;
 
+    public int addHp = 0;
+
     public MemberModel(int cardId)
     {
         Debug.Log(cardId);

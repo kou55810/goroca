@@ -61,6 +61,7 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
             if (card is MemberController)
             {
                 MemberController member = card as MemberController;
+                bool frontCheck = GameManager.instance.IsStunby() ? false : isFront;
                 // 手札から出た場合は新規
                 if (card.IsParentTrans("PlayerHand"))
                 {
@@ -71,7 +72,6 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
                         return;
                     }
                     // カードを生成
-                    bool frontCheck = GameManager.instance.IsStunby() ? false : isFront;
                     AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, frontCheck, isNormalPosition, isMovement, isAction, cardMagnification);
                     GameManager.instance.CreateEnemyCard(card.model.id, this.transform, frontCheck, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
                     if ((this.name.Equals("PlayerBattleField") || this.name.Contains("PlayerBenchField")))
@@ -83,8 +83,8 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
                 // オフラインから出る場合も新規
                 else if (card.IsParentTrans("PlayerOffline"))
                 {
-                    AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
-                    GameManager.instance.CreateEnemyCard(card.model.id, this.transform, isFront, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
+                    AbstractCardController dropCard = await CardCreator.instance.CreateCard(card.model.id, this.transform, frontCheck, isNormalPosition, isMovement, isAction, cardMagnification);
+                    GameManager.instance.CreateEnemyCard(card.model.id, this.transform, frontCheck, isNormalPosition, !isMovement, isAction, cardMagnification, dropCard.guid);
                     CardSE();
                 }
                 // それ以外はHPや道具を引き継ぐ
@@ -101,8 +101,8 @@ public class CardViewDropField : MonoBehaviourPunCallbacks, IDropHandler
                     else
                     {
                         card.DestroyCard();
-                        MemberController memCard = await CardCreator.instance.CreateMemberCard(member.model as MemberModel, this.transform, isFront, isNormalPosition, isMovement, isAction, cardMagnification);
-                        GameManager.instance.CreateEnemyMemberCard(member.model as MemberModel, this.transform, isFront, isNormalPosition, !isMovement, isAction, cardMagnification, memCard.guid);
+                        MemberController memCard = await CardCreator.instance.CreateMemberCard(member.model as MemberModel, this.transform, frontCheck, isNormalPosition, isMovement, isAction, cardMagnification);
+                        GameManager.instance.CreateEnemyMemberCard(member.model as MemberModel, this.transform, frontCheck, isNormalPosition, !isMovement, isAction, cardMagnification, memCard.guid);
                         return;
                     }
                 }
