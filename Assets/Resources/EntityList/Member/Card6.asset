@@ -26,7 +26,7 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 27886e24a2349274c95b13d010564b05, type: 2}
   specialConditions: 
   dropEnergy: 2
-  weakness: 1
+  weakness: 3
   belongings: 0
   memberType: 2
   evolutionaryOrder: {fileID: 11400000, guid: eef0e54b365c8a5419f9eb6c4aa02234, type: 2}
