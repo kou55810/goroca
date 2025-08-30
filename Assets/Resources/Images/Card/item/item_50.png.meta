@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 80d58e727edc82644804a52143f230c1
+guid: 420e55c04f30fac49885ab1249e0f969
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5299721498632217198
-    second: item_50_0
+      213: -6979067533657847978
+    second: item_50 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: item_50_0
+      name: item_50 1_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 0
-        width: 213
+        width: 220
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29d9689406b9376b0800000000000000
-      internalID: -5299721498632217198
+      spriteID: 657ccd80e0f552f90800000000000000
+      internalID: -6979067533657847978
       vertices: []
       indices: 
       edges: []
@@ -138,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0d019e75b47521b4aa704756c5c8eacf
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      item_50_0: -5299721498632217198
+      item_50 1_0: -6979067533657847978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

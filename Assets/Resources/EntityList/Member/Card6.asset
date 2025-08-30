@@ -19,7 +19,7 @@ MonoBehaviour:
   typeFrame: {fileID: 3650194198983326740, guid: 25932b40072876049aeb0543209dcc80, type: 3}
   background: {fileID: 2660099414663582446, guid: 071cfccf84430f94aae9438373216862, type: 3}
   backside: {fileID: -3780654797576799919, guid: 67e636c947908324d869dc40388b3f1e, type: 3}
-  hp: 82
+  hp: 80
   clubType: 1
   attack1: {fileID: 11400000, guid: 1019332947115844f8cb1ea761657d96, type: 2}
   attack2: {fileID: 0}

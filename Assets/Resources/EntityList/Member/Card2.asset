@@ -23,7 +23,7 @@ MonoBehaviour:
   clubType: 0
   attack1: {fileID: 11400000, guid: 65252a71d3f8fc24c9f5b13594eaafdb, type: 2}
   attack2: {fileID: 11400000, guid: b6e90d0008d512d4c9e009815ee4fdd3, type: 2}
-  ability: {fileID: 11400000, guid: 4c0c7618bdbc26445a867a783b0df74a, type: 2}
+  ability: {fileID: 0}
   specialConditions: 
   dropEnergy: 1
   weakness: 7
