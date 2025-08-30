@@ -74,7 +74,6 @@ public class MemberView : CardView
         }
         else
         {
-            SetAttack(cardModel.attack1, attack1Panel);
             TextMeshProUGUI abilityName = abilityPanel.transform.Find("abilityName").GetComponent<TextMeshProUGUI>();
             abilityName.text = cardModel.ability.abilityName;
             TextMeshProUGUI abilityEffect = abilityPanel.transform.Find("abilityEffect").GetComponent<TextMeshProUGUI>();
@@ -94,7 +93,7 @@ public class MemberView : CardView
         // 技2
         if (cardModel.attack2 is null)
         {
-            attack1Panel.SetActive(false);
+            attack2Panel.SetActive(false);
         }
         else
         {
